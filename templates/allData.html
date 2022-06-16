@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 
 <html>
+	<title>Hi</title><!--title-->
 	<body>
-		<h1>Pick an ID</h1>		
+		<h1>Pick an ID</h1><!--asks to pick an id-->
 		
+		<!--the form-->
 		<form method="POST" autocomplete="off">
 			<label for="id">ID: </label><br>
 				<input type="text" id="id" name="id"><br><br>
 			<input type="submit" value="Submit">
 		</form>
 		
-		<br><a href="/">Go Back</a>
+		<br><a href="/">Go Back</a><!--when clicked it goes back to the beginning-->
 
 		<br><br>
 
 		<h2>All of the names are</h2>
 		
+		<!--puts all of the names on screen-->
 		{% for name in names: %}
 			<p>{{name}}</p>
 		{% endfor %}
