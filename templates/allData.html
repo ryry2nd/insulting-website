@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+	<body>
+		<h1>Pick an ID</h1>		
+		
+		<form method="POST" autocomplete="off">
+			<label for="id">ID: </label><br>
+				<input type="text" id="id" name="id"><br><br>
+			<input type="submit" value="Submit">
+		</form>
+		
+		<br><br>
+
+		<h2>All of the names are</h2>
+		
+		{% for name in names: %}
+			<p>{{name}}</p>
+		{% endfor %}
+	</body>
+</html>
