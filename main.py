@@ -17,17 +17,8 @@ THREADS = 6
 PORT = 8080
 
 def getNames():
-	data = db.get_all().items()
-	for id, value in data:
+	for id, value in db.get_all().items():
 		yield value["name"]+":"+str(id)
-	
-	idx = len(data)
-	while True:
-		data = db.get_all()
-		if len(data) != idx:
-			id, value = data[idx]
-			yield value["name"]+":"+str(id)
-			idx += 1
 
 @app.route("/data", methods=['POST', 'GET'])
 def names():
