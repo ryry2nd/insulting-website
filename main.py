@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Request
 from waitress import serve
 from pysondb import PysonDB
 import socket, html
@@ -17,10 +17,17 @@ THREADS = 6
 PORT = 8080
 
 def getNames():
-	ret = []
-	for id, value in db.get_all().items():
-		ret.append(value["name"]+":"+str(id))
-	return ret
+	data = db.get_all().items()
+	for id, value in data:
+		yield value["name"]+":"+str(id)
+	
+	idx = len(data)
+	while True:
+		data = db.get_all()
+		if len(data) != idx:
+			id, value = data[idx]
+			yield value["name"]+":"+str(id)
+			idx += 1
 
 @app.route("/data", methods=['POST', 'GET'])
 def names():
@@ -41,7 +48,7 @@ def index():
 		pro = html.escape(request.form["pro"])
 		ssn = html.escape(request.form["ssn"])
 		db.add({"name": name, "pro": pro, "ssn": ssn})
-		return render_template("greating.html", name=name, pro=pro, ssn=ssn)
+		return render_template("greeting.html", name=name, pro=pro, ssn=ssn)
 
 if __name__ == '__main__':
 	print(f"starting\nip: {IP}\nport: {PORT}")
