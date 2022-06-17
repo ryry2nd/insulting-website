@@ -18,7 +18,7 @@ app = Flask(__name__)
 LENGTH_LIMIT = 100
 HOST = "0.0.0.0"
 THREADS = 6
-PORT = 80
+PORT = 8080
 
 #sets up the data part of the website
 @app.route("/data", methods=['POST', 'GET'])
