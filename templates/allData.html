@@ -19,8 +19,8 @@
 		<h2>All of the names are</h2>
 		
 		<!--puts all of the names on screen-->
-		{% for name in names: %}
-			<p>{{name}}</p>
+		{% for id, value in data: %}
+			<p>{{value["name"]}}: {{id}}</p>
 		{% endfor %}
 	</body>
 </html>
